@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Repairs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'devices' %}">Devices</a>
+        <a href="{% url 'clients' %}">Clients</a>
+        <a href="{% url 'repairs' %}">Repairs</a>
+        <a href="{% url 'admin:index' %}">Admin</a>
+    </div>
+    <h1>Repairs</h1>
+    <table>
+        <tr>
+            <th>Device</th>
+            <th>Worker</th>
+            <th>Spare Part</th>
+            <th>Date of Receipt</th>
+            <th>End Date</th>
+            <th>Description of the Problem</th>
+            <th>Description of Repair</th>
+            <th>Price</th>
+        </tr>
+        {% for repair in repairs %}
+        <tr>
+            <td>{{ repair.ID_Device.model }}</td>
+            <td>{{ repair.ID_Worker.name }}</td>
+            <td>{{ repair.ID_Spare_part.name }}</td>
+            <td>{{ repair.Date_of_receipt }}</td>
+            <td>{{ repair.End_date }}</td>
+            <td>{{ repair.Description_of_the_problem }}</td>
+            <td>{{ repair.Description_of_repair }}</td>
+            <td>{{ repair.Price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
